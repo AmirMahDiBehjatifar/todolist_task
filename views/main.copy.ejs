@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Franklin:wght@200&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>amirmahdi task</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="text-center text-light my-4">
+            <h1 class="mb-4">Todo List</h1>
+            <form class="search" action="/search" method="POST">
+                <input class="form-control m-auto" type="text" name="search" placeholder="search todos" />
+            </form>
+        </header>
+
+        <!-- Todo List Section -->
+        <ul class="list-group todos mx-auto text-light delete">
+            <!-- This is where the todo items will be displayed -->
+            <% todos.forEach(todo => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><%= todo.text %></span>
+                <form action="/delete" method="POST" class="delete-form">
+                    <input type="hidden" name="id" value="<%= todo._id %>" />
+                    <button type="submit" class="btn btn-link text-light p-0">Delete</button>
+                </form>
+            </li>
+            <% }) %>
+        </ul>
+
+        <!-- Add Todo Section -->
+        <form class="add text-center my-4" action="/add" method="POST">
+            <label class="text-light">Add a new todo...</label>
+            <input class="form-control m-auto" type="text" name="add" />
+            <br />
+            <div class="text-center">
+                <input type="submit" class="btn btn-light" value="Add Todo"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
